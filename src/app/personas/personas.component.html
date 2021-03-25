@@ -1,0 +1,65 @@
+<p-card header="Simple Card" [style]="{width: '100%'}">
+  <div class="ui-g">
+    <div class="ui-g-8">
+      <p-table [value]="personas" [columns]="cols">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+              <th *ngFor="let col of columns">
+                  {{col.header}}
+              </th>
+          </tr>
+      </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</p-card>
+<p-card>
+  <div class="ui-g">
+    <h3 class="first">Persona</h3>
+    <form [formGroup]="FormGuardarPersona" #form="ngForm">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><!--<i class="fa fa-user"></i>-->DNI</span>
+                <input type="number" formControlName="dni" id="dni" name="dni" required class="ng-dirty ng-invalid"> 
+              <p-message severity="error" text="Field is required" *ngIf="dni.hasError('required') && (dni.dirty || dni.touched || form.submitted )"></p-message>     
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><!--<i class="fa fa-user"></i>-->NOMBRE</span>
+              <input type="text" formControlName="nombre" id="nombre" name="nombre" required class="ng-dirty ng-invalid"> 
+            <p-message severity="error" text="Field is required" *ngIf="nombre.hasError('required') && (nombre.dirty || nombre.touched || form.submitted )"></p-message>     
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><!--<i class="fa fa-user"></i>-->APELLIDO</span>
+              <input type="text" formControlName="apellido" id="apellido" name="apellido" required class="ng-dirty ng-invalid"> 
+            <p-message severity="error" text="Field is required" *ngIf="apellido.hasError('required') && (apellido.dirty || apellido.touched || form.submitted )"></p-message>     
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><!--<i class="fa fa-user"></i>-->FECHA NACIMIENTO</span>
+              <input type="date" formControlName="fechaNac" id="fechaNac" name="fechaNac" required class="ng-dirty ng-invalid" > 
+            <p-message severity="error" text="Field is required" *ngIf="fechaNac.hasError('required') && (fechaNac.dirty || fechaNac.touched || form.submitted )"></p-message>     
+          </div>
+        </div>
+      </div>
+      <div>
+        <button pButton type="button" label="Click" (click) ="savePersona()"></button>
+      </div>
+    </form>
+
+  </div>
+</p-card>
+
+
